@@ -7,16 +7,19 @@ on:
 
 permissions:
   contents: read
-  id-token: write
+  issues: write
+  pull-requests: write
 
 jobs:
   pull_request:
     runs-on: ubuntu-latest
     steps:
-      - name: "Add pull request labels"
+      - name: "Add pull request labels and assignees"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_NO: ${{ github.event.pull_request.number }}
+          USER: ${{ github.actor }}
         run: |
-          gh pr edit $PR_URL --add-label "enhancement"
-          gh pr edit $PR_URL --add-assignee ${{ github.actor }}
+          gh auth login --with-token <<< "${GH_TOKEN}"
+          gh pr edit $PR_NO --add-label "enhancement"
+          gh pr edit $PR_NO --add-assignee $USERS
