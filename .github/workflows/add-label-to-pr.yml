@@ -1,3 +1,5 @@
+name: Add label, assignee to every pr
+
 on:
   workflow_dispatch:
   pull_request:
