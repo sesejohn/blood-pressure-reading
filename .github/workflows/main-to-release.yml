@@ -1,16 +1,18 @@
 name: Every push to main, push to release for deployment
-
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-
 jobs:
   push-to-release:
     runs-on: ubuntu-latest
     steps:
-      - name: Push to release branch
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Create and push to release branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |

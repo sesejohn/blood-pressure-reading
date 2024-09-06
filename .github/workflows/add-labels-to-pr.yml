@@ -1,0 +1,20 @@
+name: Add label, assignee to every pr
+on:
+  pull_request:
+    types: [opened, reopened]
+jobs:
+  pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v4
+      - name: "Authenticate with GitHub CLI"
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+      - name: "Add labels to pull request"
+        run: |
+          gh pr edit ${{ github.event.pull_request.number }} --add-label "enhancement"
+          gh pr edit ${{ github.event.pull_request.number }} --add-label "documentation"
+      - name: "Add assignee to pull request"
+        run: |
+          gh pr edit ${{ github.event.pull_request.number }} --add-assignee ${{ github.actor }}
