@@ -1,0 +1,22 @@
+name: Add label, assignee to every pr
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Add pull request labels"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          gh pr edit $PR_URL --add-label "enhancement" --add-label "documentation"
+          gh pr edit $PR_URL --add-assignee ${{ github.actor }}
