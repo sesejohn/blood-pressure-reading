@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BP Readings by johnsese</title>
+    <link rel="icon" type="image/x-icon" href="./images/icon.ico">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="heartbeat-container">
+            <svg class="heartbeat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20">
+                <polyline fill="none" stroke="red" stroke-width="2" points="0,10 10,10 15,5 20,15 25,10 35,10 40,5 45,15 50,10 60,10 70,10 75,5 80,15 85,10 90,10 100,10" />
+            </svg>
+        </div>
+        <h1>BP Readings</h1>
+        <label for="systolic">Enter your reading:</label>
+        <input type="number" id="systolic" placeholder="Systolic (mmHg)">
+        <input type="number" id="diastolic" placeholder="Diastolic (mmHg)">
+        <label for="readingMethod">How was your reading done?</label>
+        <select id="readingMethod">
+            <option value="home">With a monitor at home</option>
+            <option value="clinic">At a clinic or pharmacy</option>
+        </select>
+        <button id="getResult">Get your result</button>
+        <button id="resetButton">Reset</button>
+        <div id="result" class="hidden">
+            <div class="circle-container">
+                <div id="bloodPressureCircle" class="circle"></div>
+            </div>
+            <div class="reading-result">Your blood pressure reading is <strong id="readingResult"></strong></div>
+        </div>
+    </div>
+    <footer>
+        <p>Crafted with <span class="heart">💗</span> by <a href="https://github.com/johnsese/" target="_blank">@johnsese</a></p>
+    </footer>
+    <script src="./js/script.js"></script>
+</body>
+</html>
