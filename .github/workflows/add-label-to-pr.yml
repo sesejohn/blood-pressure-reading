@@ -12,6 +12,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
-        run:
+        run: |
           gh pr edit $PR_URL --add-label "enhancement,documentation"
           gh pr edit $PR_URL --add-assignee @me
