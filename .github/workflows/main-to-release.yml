@@ -18,3 +18,8 @@ jobs:
         run: |
           git checkout -b release
           git push --force origin release
+          - name: Create and push to release branch
+      - name: Update develop branch
+        run: |
+          git checkout -b develop
+          git push --force origin develop
