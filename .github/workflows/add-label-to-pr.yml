@@ -20,6 +20,5 @@ jobs:
           PR_NO: ${{ github.event.pull_request.number }}
           USER: ${{ github.actor }}
         run: |
-          gh auth login --with-token <<< "${GH_TOKEN}"
           gh pr edit $PR_NO --add-label "enhancement"
           gh pr edit $PR_NO --add-assignee $USERS
